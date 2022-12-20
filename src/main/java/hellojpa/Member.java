@@ -1,35 +1,35 @@
 package hellojpa;
 
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Date;
 
 
 @Entity
-//@Table(name = "USER")
+//@Table(name = "MBR")
 public class Member {
 
     @Id
     private Long id;
+    @Column(name = "name")
+    private String username;
 
-    @Column
-    private String name;
+    private Integer age;
+    @Enumerated(EnumType.STRING)
+    private RoleType roleType;
+    @Temporal(TemporalType.TIMESTAMP)// 타임스탬프를 주어야한다.
+    private Date createdDate;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date lastModifiedDate;
 
-    public Long getId() {
-        return id;
+    // 최신 버전은 이거 쓰세요
+    private LocalDate testLocalDate;
+    private LocalDateTime testLocalDateTime;
+    @Lob // 큰 컨텐츠를 넣고 싶으면 Lob을 쓴다.
+    private String description;
+    public Member() {
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 }
