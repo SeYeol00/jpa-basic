@@ -8,10 +8,14 @@ import java.util.Date;
 
 
 @Entity
+@SequenceGenerator(name = "member_seq_generator", sequenceName = "member_seq",
+initialValue = 1,
+allocationSize = 50)
 //@Table(name = "MBR")
 public class Member {
 
-    @Id
+    @Id  //                                   null로 들어와야 디비에서 오토 인크리먼트가 된다.
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name = "name")
     private String username;
