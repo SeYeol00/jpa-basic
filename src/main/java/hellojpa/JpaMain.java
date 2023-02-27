@@ -21,6 +21,25 @@ public class JpaMain {
         //익셉션이 날 수도 있다.
         try{
             // 저장
+            Team team = new Team();
+            team.setName("TeamA");
+            em.persist(team);
+
+            Member member = new Member();
+            member.setUsername("member1");
+            member.setTeam(team);
+
+            em.persist(member);
+
+            em.flush();
+            em.clear();
+
+            Member findMember = em.find(Member.class,member.getId());
+
+            Team findTeam = findMember.getTeam();
+            em.find(Member.class,findTeam.getId());
+
+            // 저장
 //            Member member = new Member();
 //            member.setId(1L);
 //            member.setName("HelloA");
