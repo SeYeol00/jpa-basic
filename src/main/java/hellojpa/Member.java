@@ -25,6 +25,8 @@ public class Member {
 //    private Long teamId;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    // ManyToOne이 있는 곳을 연관관계의 주인으로 해라
+    // 외래키가 있는 곳을 주인으로 해라
     @JoinColumn(name = "TEAM_ID") // 관계와 조인하는 컬럼은 뭐야?
     private Team team;
 

@@ -26,10 +26,13 @@ public class JpaMain {
             em.persist(team);
 
             Member member = new Member();
-            member.setUsername("member1");
+            // 연관관계의 주인에 값을 넣어주기
             member.setTeam(team);
-
+            member.setUsername("member1");
+            // 양방향 매핑시 연관관계의 주인에 값을 입력해야한다.
+            team.getMembers().add(member);
             em.persist(member);
+
 
             em.flush();
             em.clear();
