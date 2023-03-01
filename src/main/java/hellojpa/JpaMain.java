@@ -8,6 +8,7 @@ import java.util.List;
 
 public class JpaMain {
 
+    // 컨트롤러에서 엔티티를 절대 반환하지 말자
     public static void main(String[] args) {
         // xml 파일에 지정해놓은 persistenceUnitName
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("hello");
@@ -27,13 +28,14 @@ public class JpaMain {
 
             Member member = new Member();
             // 연관관계의 주인에 값을 넣어주기
-            member.setTeam(team);
+            member.changeTeam(team);
             member.setUsername("member1");
             // 양방향 매핑시 연관관계의 주인에 값을 입력해야한다.
             team.getMembers().add(member);
             em.persist(member);
+            // 양방향 관계는 둘 다 넣어주는 것이 필요하다.
 
-
+            team.addMember(member);
             em.flush();
             em.clear();
 

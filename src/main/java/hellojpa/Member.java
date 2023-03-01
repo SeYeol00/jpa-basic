@@ -62,11 +62,18 @@ public class Member {
         this.username = username;
     }
 
+    public void setTeam(Team team) {
+        this.team = team;
+    }
+
     public Team getTeam() {
         return team;
     }
 
-    public void setTeam(Team team) {
+    // 연관관계 편의 메소드를 작성하자
+    // 이러면 양방향으로 걸린다.
+    public void changeTeam(Team team) {
         this.team = team;
+        team.getMembers().add(this);
     }
 }

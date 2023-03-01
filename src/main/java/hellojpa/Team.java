@@ -51,4 +51,10 @@ public class Team {
     public void setMembers(List<Member> members) {
         this.members = members;
     }
+
+    // 둘 다 걸어 놓으면 문제는 무한 루프가 걸릴 수 있다.
+    public void addMember(Member member) {
+        member.setTeam(this);
+        members.add(member);
+    }
 }
